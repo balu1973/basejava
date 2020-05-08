@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -41,11 +40,11 @@ public class ArrayStorage {
 
     void delete(String uuid) {
         if (uuid == null || uuid.isEmpty()) return;
-        for (int index = 0; index < size; index++) {
-            if (uuid.equals(storage[index].uuid)) {
-                int numMoved = size - index - 1;
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].uuid)) {
+                int numMoved = size - i - 1;
                 if (numMoved > 0)
-                    System.arraycopy(storage, index+1, storage, index, numMoved);
+                    System.arraycopy(storage, i+1, storage, i, numMoved);
                 storage[--size] = null;
                 return;
             }
@@ -56,10 +55,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] all = new Resume[0];
-        if (size > 0)
-            all = Arrays.copyOf(storage, size);
-        return all;
+        return Arrays.copyOf(storage, size);
     }
 
     int size() {
